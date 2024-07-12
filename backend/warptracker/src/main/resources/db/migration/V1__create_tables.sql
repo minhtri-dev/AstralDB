@@ -1,0 +1,25 @@
+DROP TABLE IF EXISTS Users;
+DROP TABLE IF EXISTS Warp;
+DROP TABLE IF EXISTS Item;
+
+CREATE TABLE Users (
+  user_id INT PRIMARY KEY,
+  username VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Warp (
+  warp_id INT PRIMARY KEY,
+  user_id INT,
+  item_id VARCHAR(255),
+  gacha_type VARCHAR(255),
+  FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
+
+CREATE TABLE Item (
+  item_id INT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  item_type VARCHAR(255) NOT NULL,
+  rank_type VARCHAR(255) NOT NULL
+);
