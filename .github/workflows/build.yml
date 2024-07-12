@@ -12,7 +12,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: '17'
-          distribution: 'openjdk'
+          distribution: 'adopt'
       - name: Build with Maven
         working-directory: backend/warptracker
         run: ./mvnw --batch-mode --update-snapshots package
