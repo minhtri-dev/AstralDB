@@ -1,6 +1,6 @@
 package com.example.warptracker.models;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import java.util.Set;
 
