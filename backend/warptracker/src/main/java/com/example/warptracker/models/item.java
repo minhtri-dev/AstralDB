@@ -3,8 +3,8 @@ package com.example.warptracker.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Item")
-public class Item {
+@Table(name = "item")
+public class item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
