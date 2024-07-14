@@ -13,7 +13,7 @@ public class Warp {
     private Integer warpId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Column(name = "item_id", nullable = false)
