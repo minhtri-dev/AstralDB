@@ -9,6 +9,13 @@ CREATE TABLE IF NOT EXISTS users (
   password VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS item (
+  item_id INT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  item_type VARCHAR(255) NOT NULL,
+  rank_type VARCHAR(255) NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS warp (
   warp_id INT PRIMARY KEY,
   user_id INT,
@@ -17,11 +24,4 @@ CREATE TABLE IF NOT EXISTS warp (
   gacha_type VARCHAR(255),
   FOREIGN KEY (user_id) REFERENCES users(user_id),
   FOREIGN KEY (item_id) REFERENCES item(item_id)
-);
-
-CREATE TABLE IF NOT EXISTS item (
-  item_id INT PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
-  item_type VARCHAR(255) NOT NULL,
-  rank_type VARCHAR(255) NOT NULL
 );
