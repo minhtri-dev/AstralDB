@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS item (
   item_id INT PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   item_type VARCHAR(255) NOT NULL,
-  rank_type VARCHAR(255) NOT NULL
+  rank_type INT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS warp (
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS warp (
   user_id INT NOT NULL,
   item_id INT NOT NULL,
   gacha_id INT NOT NULL,
-  gacha_type VARCHAR(255) NOT NULL,
+  gacha_type INT NOT NULL,
   pity INT,
   warp_time DATETIME NOT NULL,
   FOREIGN KEY (user_id) REFERENCES users(user_id),
