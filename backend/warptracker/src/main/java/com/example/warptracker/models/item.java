@@ -17,7 +17,7 @@ public class item {
     private String itemType;
 
     @Column(nullable = false)
-    private String rankType;
+    private Integer rankType;
 
     // Getters and setters
     public Integer getItemId() {
@@ -44,11 +44,11 @@ public class item {
         this.itemType = itemType;
     }
 
-    public String getRankType() {
+    public Integer getRankType() {
         return rankType;
     }
 
-    public void setRankType(String rankType) {
+    public void setRankType(Integer rankType) {
         this.rankType = rankType;
     }
 }
