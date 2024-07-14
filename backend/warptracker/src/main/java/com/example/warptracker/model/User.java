@@ -9,7 +9,6 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
 
     @Column(nullable = false, unique = true)
@@ -23,6 +22,23 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Warp> warps;
+
+    // Default constructor
+    public User() {
+    }
+
+    // Placeholder user
+    public User(Integer userId) {
+        this.userId = userId;
+    }
+
+    // Constructor for a complete user
+    public User(Integer userId, String username, String email, String password) {
+        this.userId = userId;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
 
     // Getters and setters
     public Integer getUserId() {
