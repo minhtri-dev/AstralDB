@@ -1,6 +1,6 @@
 package com.example.warptracker.service;
 
-// import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.web.client.RestTemplate;
 
+import com.example.warptracker.model.api_response;
 import com.example.warptracker.repository.WarpRepository;
 
 public class WarpServiceTest {
@@ -31,8 +32,10 @@ public class WarpServiceTest {
 
     @Test
     public void testPopulateWarpsFromApi() {
+        String response = warpService.populateWarpsFromApi();
+        String mockResponse = "{\"retcode\":0,\"message\":\"OK\",\"data\":{\"page\":\"0\",\"size\":\"6\",\"list\":[],\"region\":\"prod_official_asia\",\"region_time_zone\":8}}"; // Example mock response
 
-        // assertEquals();
+        assertEquals("OK", response);
 
     }
 }
