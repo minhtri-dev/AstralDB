@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS item (
 
 CREATE TABLE IF NOT EXISTS warp (
   warp_id INT PRIMARY KEY,
-  user_id INT NOT NULL,
+  user_id INT,
   item_id INT NOT NULL,
   gacha_id INT NOT NULL,
   gacha_type INT NOT NULL,
