@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS warp (
   gacha_id INT NOT NULL,
   gacha_type VARCHAR(255) NOT NULL,
   pity INT,
-  warp_time DATETIME,
+  warp_time DATETIME NOT NULL,
   FOREIGN KEY (user_id) REFERENCES users(user_id),
   FOREIGN KEY (item_id) REFERENCES item(item_id)
 );
