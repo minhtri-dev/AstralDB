@@ -7,16 +7,15 @@ import jakarta.persistence.*;
 public class Item {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer itemId;
 
-    @Column(nullable = false)
+    @Column(name = "name")
     private String name;
 
-    @Column(nullable = false)
+    @Column(name = "item_type")
     private String itemType;
 
-    @Column(nullable = false)
+    @Column(name = "rank_type")
     private Integer rankType;
 
     // Getters and setters
