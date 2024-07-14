@@ -12,7 +12,8 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS warp (
   warp_id INT PRIMARY KEY,
   user_id INT,
-  item_id VARCHAR(255),
+  item_id INT,
+  gacha_id INT,
   gacha_type VARCHAR(255),
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 );

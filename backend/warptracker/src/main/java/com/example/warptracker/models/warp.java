@@ -15,7 +15,10 @@ public class warp {
     private user user;
 
     @Column(nullable = false)
-    private String itemId;
+    private Integer itemId;
+
+    @Column(nullable = false)
+    private Integer gachaId;
 
     @Column(nullable = false)
     private String gachaType;
@@ -37,12 +40,20 @@ public class warp {
         this.user = user;
     }
 
-    public String getItemId() {
+    public Integer getItemId() {
         return itemId;
     }
 
-    public void setItemId(String itemId) {
+    public void setItemId(Integer itemId) {
         this.itemId = itemId;
+    }
+
+    public Integer getGachaId() {
+        return gachaId;
+    }
+
+    public void setGachaId(Integer gachaId) {
+        this.gachaId = gachaId;
     }
 
     public String getGachaType() {
