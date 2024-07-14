@@ -31,8 +31,8 @@ public class Warp {
     @Column(name = "warp_time", nullable = false)
     private Timestamp warpTime;
 
-     // Default constructor
-     public Warp() {
+    // Default constructor
+    public Warp() {
     }
 
     // Parameterised constructor
