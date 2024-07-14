@@ -31,6 +31,20 @@ public class Warp {
     @Column(name = "warp_time", nullable = false)
     private Timestamp warpTime;
 
+     // Default constructor
+     public Warp() {
+    }
+
+    // Parameterised constructor
+    public Warp(User user, Integer itemId, Integer gachaId, String gachaType, Integer pity, Timestamp warpTime) {
+        this.user = user;
+        this.itemId = itemId;
+        this.gachaId = gachaId;
+        this.gachaType = gachaType;
+        this.pity = pity;
+        this.warpTime = warpTime;
+    }
+
     // Getters and setters
     public Integer getWarpId() {
         return warpId;
