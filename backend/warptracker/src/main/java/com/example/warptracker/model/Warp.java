@@ -8,7 +8,6 @@ import java.sql.Timestamp;
 public class Warp {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "warp_id")
     private Integer warpId;
 
@@ -36,7 +35,8 @@ public class Warp {
     }
 
     // Parameterised constructor
-    public Warp(User user, Integer itemId, Integer gachaId, String gachaType, Integer pity, Timestamp warpTime) {
+    public Warp(Integer warpId, User user, Integer itemId, Integer gachaId, String gachaType, Integer pity, Timestamp warpTime) {
+        this.warpId = warpId;
         this.user = user;
         this.itemId = itemId;
         this.gachaId = gachaId;
