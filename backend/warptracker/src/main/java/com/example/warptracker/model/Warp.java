@@ -1,11 +1,11 @@
 package com.example.warptracker.model;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "warp")
-public class warp {
+public class Warp {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,7 +14,7 @@ public class warp {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
-    private user user;
+    private User user;
 
     @Column(name = "item_id", nullable = false)
     private Integer itemId;
@@ -29,7 +29,7 @@ public class warp {
     private Integer pity;
 
     @Column(name = "warp_time", nullable = false)
-    private LocalDateTime warpTime;
+    private Timestamp warpTime;
 
     // Getters and setters
     public Integer getWarpId() {
@@ -40,11 +40,11 @@ public class warp {
         this.warpId = warpId;
     }
 
-    public user getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(user user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
@@ -80,11 +80,13 @@ public class warp {
         this.pity = pity;
     }
 
-    public LocalDateTime getWarpTime() {
+    public Timestamp getWarpTime() {
         return warpTime;
     }
 
-    public void setWarpTime(LocalDateTime warpTime) {
-        this.warpTime = warpTime;
+    public void setWarpTime(String warpTime) {
+        java.sql.Timestamp timestamp = java.sql.Timestamp.valueOf(warpTime);
+
+        this.warpTime = timestamp; 
     }
 }

@@ -6,7 +6,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class user {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +22,7 @@ public class user {
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<warp> warps;
+    private Set<Warp> warps;
 
     // Getters and setters
     public Integer getUserId() {
@@ -57,11 +57,11 @@ public class user {
         this.password = password;
     }
 
-    public Set<warp> getWarps() {
+    public Set<Warp> getWarps() {
         return warps;
     }
 
-    public void setWarps(Set<warp> warps) {
+    public void setWarps(Set<Warp> warps) {
         this.warps = warps;
     }
 }
