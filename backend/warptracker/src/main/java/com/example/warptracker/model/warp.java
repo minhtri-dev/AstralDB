@@ -1,4 +1,4 @@
-package com.example.warptracker.models;
+package com.example.warptracker.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
