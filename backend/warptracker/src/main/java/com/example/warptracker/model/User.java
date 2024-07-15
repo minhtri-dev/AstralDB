@@ -9,7 +9,7 @@ import java.util.Set;
 public class User {
 
     @Id
-    private Integer userId;
+    private Long userId;
 
     @Column(nullable = false, unique = true)
     private String username;
@@ -28,12 +28,12 @@ public class User {
     }
 
     // Placeholder user
-    public User(Integer userId) {
+    public User(Long userId) {
         this.userId = userId;
     }
 
     // Constructor for a complete user
-    public User(Integer userId, String username, String email, String password) {
+    public User(Long userId, String username, String email, String password) {
         this.userId = userId;
         this.username = username;
         this.email = email;
@@ -41,11 +41,11 @@ public class User {
     }
 
     // Getters and setters
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 

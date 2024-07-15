@@ -1,22 +1,26 @@
 package com.example.warptracker.service;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import org.apache.http.client.utils.URIBuilder;
+import java.nio.charset.StandardCharsets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.regex.Pattern;
 import com.google.gson.Gson;
+import java.sql.Timestamp;
 
 import com.example.warptracker.repository.WarpRepository;
 import com.example.warptracker.model.HonkaiData;
 import com.example.warptracker.model.HonkaiData.Item;
 import com.example.warptracker.model.Warp;
+import com.example.warptracker.model.User;
 
 @Service
 public class WarpService {
@@ -44,47 +48,56 @@ public class WarpService {
         }
     }
 
-    public List<Warp> populateWarpsFromApi(String api_url) {
+    public List<Warp> getWarpsFromApi(String api_url) {
         HonkaiData honkaiData = new HonkaiData();
         List<Warp> warps = new ArrayList<>();
+        String url = "";
+        String end_id = "0";
 
         try {
-            Map<String, String> params = Map.of(
-            "gacha_type", "1",
-            "end_id", "0",
-            "size", "20",
-            "page", "0"
-            );
-
-            URIBuilder uriBuilder = new URIBuilder(api_url);
-            for (Map.Entry<String, String> entry : params.entrySet()) {
-                uriBuilder.addParameter(entry.getKey(), entry.getValue());
-            }
-
-            URI uri = uriBuilder.build();
-            String url = uri.toString();
-            String end_id;
-            Integer page = 0;
+            honkaiData = httpRequest(api_url); 
+            List<Item> items = honkaiData.getData().getList();
             
-            while (true) {
-                honkaiData = httpRequest(url); 
-                List<Item> items = honkaiData.getData().getList();
-                if (items.size() > 0) {
-                    for (Item item : items) {
-                        
-                    } 
-                } else {
-                    break;
+            while (!items.isEmpty()) {
+                for (Item item : items) {
+                    // Use UID to find user in DB, if user isnt in database use the uid from the api
+                    User user = new User(Long.valueOf(item.getUid()));
+                    warps.add(new Warp(
+                        Long.parseLong(item.getId()),
+                        user, 
+                        Integer.parseInt(item.getItemId()), 
+                        Integer.parseInt(item.getGachaId()),
+                        item.getGachaType(),
+                        null,
+                        Timestamp.valueOf(item.getTime())
+                    ));
+                    end_id = item.getItemId();
                 }
+                // url = changeQueryParam(api_url, "end_id", end_id);
+                honkaiData = httpRequest(url); 
+                if (honkaiData != null) {
+                    items = honkaiData.getData().getList();
+                }
+                
+                items = new ArrayList();
             }
+            // Update warptracker database
+            // warpRepository.saveAll(warps);
         } catch (Exception e) {
-            e.printStackTrace(); 
-            return null; 
+            // TODO: handle exception
         }
         
         
-        
-        return warpRepository.saveAll(warps);
+        return warps;
     }
 
+     // Add or update a query parameter
+    public String changeQueryParam(String url, String key, String value) {
+        if (url.contains(key + "=")) {
+            String regex = "([&?])" + Pattern.quote(key) + "=[^&]*";
+            return url.replaceAll(regex, "$1" + key + "=" + value);
+        } else {
+            return url + "&" + key + "=" + value;
+        }
+    }
 }
