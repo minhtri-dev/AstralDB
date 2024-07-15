@@ -1,4 +1,4 @@
-package com.example.warptracker.model;
+package com.example.warptracker.model.API;
 
 import java.util.List;
 

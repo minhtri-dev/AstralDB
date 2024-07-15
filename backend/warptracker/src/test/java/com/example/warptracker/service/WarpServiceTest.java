@@ -11,9 +11,9 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.web.client.RestTemplate;
 
-import com.example.warptracker.model.HonkaiData;
-import com.example.warptracker.model.Warp;
-import com.example.warptracker.repository.WarpRepository;
+import com.example.warptracker.model.API.HonkaiData;
+import com.example.warptracker.model.primary.Warp;
+import com.example.warptracker.repository.primary.WarpRepository;
 
 public class WarpServiceTest {
 

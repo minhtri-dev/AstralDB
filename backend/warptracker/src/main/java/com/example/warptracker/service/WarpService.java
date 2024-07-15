@@ -14,11 +14,11 @@ import java.util.ArrayList;
 import com.google.gson.Gson;
 import java.sql.Timestamp;
 
-import com.example.warptracker.repository.WarpRepository;
-import com.example.warptracker.model.HonkaiData;
-import com.example.warptracker.model.HonkaiData.Item;
-import com.example.warptracker.model.Warp;
-import com.example.warptracker.model.User;
+import com.example.warptracker.model.API.HonkaiData;
+import com.example.warptracker.model.API.HonkaiData.Item;
+import com.example.warptracker.model.primary.User;
+import com.example.warptracker.model.primary.Warp;
+import com.example.warptracker.repository.primary.WarpRepository;
 
 @Service
 public class WarpService {

@@ -1,4 +1,4 @@
-package com.example.warptracker.model;
+package com.example.warptracker.model.primary;
 
 import jakarta.persistence.*;
 
