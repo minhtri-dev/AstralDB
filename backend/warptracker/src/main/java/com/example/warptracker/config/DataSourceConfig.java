@@ -10,14 +10,14 @@ import org.springframework.context.annotation.Primary;
 
 @Configuration
 public class DataSourceConfig {
-    @Bean
+    @Bean(name = "primaryDataSource")
     @Primary
     @ConfigurationProperties(prefix="spring.datasource-primary")
     public DataSource primaryDataSource() {
         return DataSourceBuilder.create().build();
     }
 
-    @Bean
+    @Bean(name = "secondaryDataSource")
     @ConfigurationProperties(prefix="spring.datasource-secondary")
     public DataSource secondaryDataSource() {
         return DataSourceBuilder.create().build();
