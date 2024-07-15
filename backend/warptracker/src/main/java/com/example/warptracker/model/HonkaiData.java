@@ -87,15 +87,15 @@ public class HonkaiData {
 
     public static class Item {
         private String uid;
-        private String gachaId;
-        private String gachaType;
-        private String itemId;
+        private String gacha_id;
+        private String gacha_type;
+        private String item_id;
         private String count;
         private String time;
         private String name;
         private String lang;
-        private String itemType;
-        private String rankType;
+        private String item_type;
+        private String rank_type;
         private String id;
 
         // Getters and Setters
@@ -109,27 +109,27 @@ public class HonkaiData {
         }
 
         public String getGachaId() {
-            return gachaId;
+            return gacha_id;
         }
 
-        public void setGachaId(String gachaId) {
-            this.gachaId = gachaId;
+        public void setGachaId(String gacha_id) {
+            this.gacha_id = gacha_id;
         }
 
         public String getGachaType() {
-            return gachaType;
+            return gacha_type;
         }
 
-        public void setGachaType(String gachaType) {
-            this.gachaType = gachaType;
+        public void setGachaType(String gacha_type) {
+            this.gacha_type = gacha_type;
         }
 
         public String getItemId() {
-            return itemId;
+            return item_id;
         }
 
-        public void setItemId(String itemId) {
-            this.itemId = itemId;
+        public void setItemId(String item_id) {
+            this.item_id = item_id;
         }
 
         public String getCount() {
@@ -165,19 +165,19 @@ public class HonkaiData {
         }
 
         public String getItemType() {
-            return itemType;
+            return item_type;
         }
 
-        public void setItemType(String itemType) {
-            this.itemType = itemType;
+        public void setItemType(String item_type) {
+            this.item_type = item_type;
         }
 
         public String getRankType() {
-            return rankType;
+            return rank_type;
         }
 
-        public void setRankType(String rankType) {
-            this.rankType = rankType;
+        public void setRankType(String rank_type) {
+            this.rank_type = rank_type;
         }
 
         public String getId() {
