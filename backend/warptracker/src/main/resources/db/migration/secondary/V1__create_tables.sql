@@ -1,6 +1,0 @@
-CREATE TABLE IF NOT EXISTS global (
-  user_id INT PRIMARY KEY,
-  username VARCHAR(255) UNIQUE,
-  email VARCHAR(255) UNIQUE,
-  password VARCHAR(255) 
-);

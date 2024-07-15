@@ -1,4 +1,4 @@
-package com.example.warptracker.controller.primary;
+package com.example.warptracker.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
