@@ -83,7 +83,7 @@ public class WarpService {
                 items = honkaiData.getData().getList();
             }
             // Update warptracker database
-            // warpRepository.saveAll(warps);
+            warpRepository.saveAll(warps);
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();

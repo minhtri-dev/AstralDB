@@ -1,9 +1,7 @@
 package com.example.warptracker.model;
 
 import java.util.List;
-import jakarta.persistence.Entity;
 
-@Entity
 public class HonkaiData {
     private int retcode;
     private String message;
