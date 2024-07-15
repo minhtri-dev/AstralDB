@@ -2,21 +2,15 @@ package com.example.warptracker.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.net.URI;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import com.example.warptracker.model.HonkaiData;
 import com.example.warptracker.model.HonkaiData.Item;
@@ -48,106 +42,16 @@ public class WarpServiceTest {
     @Test
     public void testGetWarpsFromApi() {
         List<Warp> warps = new ArrayList<>();
-        Integer count = 0;
-        String url = "";
-        warps = warpService.getWarpsFromApi(API_DATA);
+        warps = warpService.getWarpsFromApi(EXTERNAL_API_URL);
 
-        assertEquals("", warps);
-
+        assertEquals(66, warps.size());
     }
 
     @Test
     public void testHttpRequest() {
         HonkaiData data = new HonkaiData();
         data = warpService.httpRequest(API_DATA);
-        List<Item> items = data.getData().getList();
 
-        List<Warp> warps = new ArrayList<>();
-
-        try {
-            for (Item item : items) {
-                // Use UID to find user in DB, if user isnt in database use the uid from the api
-                User user = new User(Long.valueOf(item.getUid()));
-                warps.add(new Warp(
-                    Long.parseLong((item.getId())),
-                    user, 
-                    Integer.parseInt(item.getItemId()), 
-                    Integer.parseInt(item.getGachaId()),
-                    item.getGachaType(),
-                    null,
-                    Timestamp.valueOf(item.getTime())
-                ));
-            }
-        } catch (Exception e) {
-
-        }
-        
-
-        assertEquals("", warps);
-    }
-
-    @Test
-    public void testURIbuilder() {
-        String url = "";
-        try {
-            url = warpService.changeQueryParam(EXTERNAL_API_URL, "gacha_type", "11");
-            url = warpService.changeQueryParam(EXTERNAL_API_URL, "gacha_type", "12");
-        } catch (Exception e) {
-            e.printStackTrace(); 
-        }
-        
-        assertEquals("", url);
-    }
-
-    @Test
-    public void testList() {
-        // HonkaiData honkaiData = new HonkaiData();
-        // List<Warp> warps = new ArrayList<>();
-        // String end_id = "0";
-        // List<Item> items = new ArrayList<>();
-        // String url = "";
-
-        // Integer count = 0;
-
-        // try {
-        //     Map<String, String> params = Map.of(
-        //     "gacha_type", "1",
-        //     "end_id", "0",
-        //     "size", "19"
-        //     );
-
-        //     for (Map.Entry<String, String> entry : params.entrySet()) {
-        //         uriBuilder.addParameter(entry.getKey(), entry.getValue());
-        //     }
-        //     URI uri = uriBuilder.build();
-        //     url = uri.toString();
-        //     items = warpService.httpRequest(API_DATA).getData().getList();
-
-        //     while (!items.isEmpty()) {
-        //         count++;
-        //         for (Item item : items) {
-        //             // Use UID to find user in DB, if user isnt in database use the uid from the api
-        //             User user = new User(Integer.parseInt(item.getUid()));
-        //             warps.add(new Warp(
-        //                 Integer.parseInt(item.getId()),
-        //                 user, 
-        //                 Integer.parseInt(item.getItemId()), 
-        //                 Integer.parseInt(item.getGachaId()),
-        //                 item.getGachaType(),
-        //                 0,
-        //                 Timestamp.valueOf(item.getTime())
-        //             ));
-        //             end_id = item.getItemId();
-        //         }
-        //         uriBuilder.setParameter("end_id", end_id);
-        //         url = uriBuilder.build().toString();
-        //         honkaiData = warpService.httpRequest(url); 
-        //         items = honkaiData.getData().getList();
-        //     }
-        // } catch (Exception e) {
-        //     e.printStackTrace(); 
-        // }
-
-        // assertEquals("", url);
+        assertEquals("OK", data.getMessage());
     }
 }

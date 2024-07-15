@@ -1,18 +1,17 @@
 package com.example.warptracker.service;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
+import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
+
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.regex.Pattern;
 import com.google.gson.Gson;
 import java.sql.Timestamp;
 
@@ -55,7 +54,13 @@ public class WarpService {
         String end_id = "0";
 
         try {
-            honkaiData = httpRequest(api_url); 
+            UriComponentsBuilder urlBuilder = UriComponentsBuilder.fromUriString(api_url)
+                .queryParam("size", "20")
+                .queryParam("end_id", end_id)
+                .queryParam("gacha_type", "12");
+            url = urlBuilder.build().toUriString();
+
+            honkaiData = httpRequest(url); 
             List<Item> items = honkaiData.getData().getList();
             
             while (!items.isEmpty()) {
@@ -71,33 +76,20 @@ public class WarpService {
                         null,
                         Timestamp.valueOf(item.getTime())
                     ));
-                    end_id = item.getItemId();
+                    end_id = item.getId();
                 }
-                // url = changeQueryParam(api_url, "end_id", end_id);
+                urlBuilder.replaceQueryParam("end_id", end_id);
+                url = urlBuilder.build().toUriString();
                 honkaiData = httpRequest(url); 
-                if (honkaiData != null) {
-                    items = honkaiData.getData().getList();
-                }
-                
-                items = new ArrayList();
+                items = honkaiData.getData().getList();
             }
             // Update warptracker database
             // warpRepository.saveAll(warps);
         } catch (Exception e) {
             // TODO: handle exception
+            e.printStackTrace();
         }
-        
         
         return warps;
-    }
-
-     // Add or update a query parameter
-    public String changeQueryParam(String url, String key, String value) {
-        if (url.contains(key + "=")) {
-            String regex = "([&?])" + Pattern.quote(key) + "=[^&]*";
-            return url.replaceAll(regex, "$1" + key + "=" + value);
-        } else {
-            return url + "&" + key + "=" + value;
-        }
     }
 }
