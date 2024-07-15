@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Primary;
 
 @Configuration
 public class DataSourceConfig {
+    
     @Bean(name = "primaryDataSource")
     @Primary
     @ConfigurationProperties(prefix="spring.datasource-primary")
