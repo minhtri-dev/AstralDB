@@ -5,10 +5,11 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import java.util.List;
 import java.util.ArrayList;
 import com.google.gson.Gson;
@@ -28,6 +29,14 @@ public class WarpService {
 
     @Autowired
     RestTemplate restTemplate = new RestTemplate();
+
+    @Autowired
+    @Qualifier("transactionManagerWarp")
+    private PlatformTransactionManager transactionManager1;
+
+    @Autowired
+    @Qualifier("transactionManagerGlobal")
+    private PlatformTransactionManager transactionManager2;
     
     HttpClient httpClient = HttpClient.newHttpClient();
     Gson gson = new Gson();
