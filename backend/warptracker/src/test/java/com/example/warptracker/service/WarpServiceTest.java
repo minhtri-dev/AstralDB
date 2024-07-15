@@ -2,7 +2,6 @@ package com.example.warptracker.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,8 +12,6 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.warptracker.model.HonkaiData;
-import com.example.warptracker.model.HonkaiData.Item;
-import com.example.warptracker.model.User;
 import com.example.warptracker.model.Warp;
 import com.example.warptracker.repository.WarpRepository;
 
