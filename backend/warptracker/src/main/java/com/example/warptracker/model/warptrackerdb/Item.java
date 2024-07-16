@@ -16,20 +16,26 @@ public class Item {
     @Column(name = "item_type", nullable = false)
     private String itemType;
 
-    @Column(name = "rank_type", nullable = false)
+    @Column(name = "rank_type")
     private Integer rankType;
 
-    // Default constructor
-    public Item() {
-    }
+    @Column(name = "item_description", nullable = false)
+    private String itemDescription;
 
-    // Constructor for an item
-    public Item(Long itemId, String name, String itemType, Integer rankType) {
-        this.itemId = itemId;
-        this.name = name;
-        this.itemType = itemType;
-        this.rankType = rankType;
-    }
+    @Column(name = "item_path")
+    private String itemPath;
+
+    // // Default constructor
+    // public Item() {
+    // }
+
+    // // Constructor for an item
+    // public Item(Long itemId, String name, String itemType, Integer rankType) {
+    //     this.itemId = itemId;
+    //     this.name = name;
+    //     this.itemType = itemType;
+    //     this.rankType = rankType;
+    // }
 
     // Getters and setters
     public Long getItemId() {
@@ -62,5 +68,21 @@ public class Item {
 
     public void setRankType(Integer rankType) {
         this.rankType = rankType;
+    }
+
+    public String getItemDescription() {
+        return itemDescription;
+    }
+
+    public void setItemDescription(String itemDescription) {
+        this.itemDescription = itemDescription;
+    }
+
+    public String getItemPath() {
+        return itemPath;
+    }
+
+    public void setitemPath(String itemPath) {
+        this.itemPath = itemPath;
     }
 }
