@@ -7,23 +7,36 @@ import jakarta.persistence.*;
 public class Item {
 
     @Id
-    private Integer itemId;
+    @Column(name = "item_id")
+    private Long itemId;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "item_type")
+    @Column(name = "item_type", nullable = false)
     private String itemType;
 
-    @Column(name = "rank_type")
+    @Column(name = "rank_type", nullable = false)
     private Integer rankType;
 
+    // Default constructor
+    public Item() {
+    }
+
+    // Constructor for an item
+    public Item(Long itemId, String name, String itemType, Integer rankType) {
+        this.itemId = itemId;
+        this.name = name;
+        this.itemType = itemType;
+        this.rankType = rankType;
+    }
+
     // Getters and setters
-    public Integer getItemId() {
+    public Long getItemId() {
         return itemId;
     }
 
-    public void setItemId(Integer itemId) {
+    public void setItemId(Long itemId) {
         this.itemId = itemId;
     }
 

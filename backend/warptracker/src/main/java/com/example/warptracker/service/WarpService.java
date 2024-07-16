@@ -64,11 +64,11 @@ public class WarpService {
             while (!items.isEmpty()) {
                 for (Item item : items) {
                     // Use UID to find user in DB, if user isnt in database use the uid from the api
-                    User user = new User(Long.valueOf(item.getUid()));
+                    // User user = new User(Long.valueOf(item.getUid()));
                     warps.add(new Warp(
                         Long.parseLong(item.getId()),
-                        user, 
-                        Integer.parseInt(item.getItemId()), 
+                        Long.valueOf(item.getUid()), 
+                        Long.parseLong(item.getItemId()), 
                         Integer.parseInt(item.getGachaId()),
                         item.getGachaType(),
                         null,
@@ -79,7 +79,10 @@ public class WarpService {
                 urlBuilder.replaceQueryParam("end_id", end_id);
                 url = urlBuilder.build().toUriString();
                 honkaiData = httpRequest(url); 
-                items = honkaiData.getData().getList();
+                if (items != null) {
+                    items = honkaiData.getData().getList();
+                    // throw exception here
+                }
             }
             // Update warptracker database
             warpRepository.saveAll(warps);

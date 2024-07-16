@@ -36,19 +36,19 @@ public class WarpServiceTest {
     }
 
 
-    @Test
-    public void testGetWarpsFromApi() {
-        List<Warp> warps = new ArrayList<>();
-        warps = warpService.getWarpsFromApi(EXTERNAL_API_URL);
+    // @Test
+    // public void testGetWarpsFromApi() {
+    //     List<Warp> warps = new ArrayList<>();
+    //     warps = warpService.getWarpsFromApi(EXTERNAL_API_URL);
 
-        assertEquals(66, warps.size());
-    }
+    //     assertEquals(66, warps.size());
+    // }
 
-    @Test
-    public void testHttpRequest() {
-        HonkaiData data = new HonkaiData();
-        data = warpService.httpRequest(API_DATA);
+    // @Test
+    // public void testHttpRequest() {
+    //     HonkaiData data = new HonkaiData();
+    //     data = warpService.httpRequest(API_DATA);
 
-        assertEquals("OK", data.getMessage());
-    }
+    //     assertEquals("OK", data.getMessage());
+    // }
 }

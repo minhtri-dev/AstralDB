@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.example.warptracker.model.warptrackerdb.Warp;
 
 @Repository
-public interface WarpRepository extends JpaRepository<Warp, Integer> {
+public interface WarpRepository extends JpaRepository<Warp, Long> {
 }

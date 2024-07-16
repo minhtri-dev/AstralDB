@@ -11,12 +11,15 @@ public class Warp {
     @Column(name = "warp_id")
     private Long warpId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    // @ManyToOne(fetch = FetchType.LAZY)
+    // @JoinColumn(name = "user_id")
+    // private User user;
+    
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
 
     @Column(name = "item_id", nullable = false)
-    private Integer itemId;
+    private Long itemId;
 
     @Column(name = "gacha_id", nullable = false)
     private Integer gachaId;
@@ -35,9 +38,9 @@ public class Warp {
     }
 
     // Parameterised constructor
-    public Warp(Long warpId, User user, Integer itemId, Integer gachaId, String gachaType, Integer pity, Timestamp warpTime) {
+    public Warp(Long warpId, Long userId, Long itemId, Integer gachaId, String gachaType, Integer pity, Timestamp warpTime) {
         this.warpId = warpId;
-        this.user = user;
+        this.userId = userId;
         this.itemId = itemId;
         this.gachaId = gachaId;
         this.gachaType = gachaType;
@@ -54,19 +57,19 @@ public class Warp {
         this.warpId = warpId;
     }
 
-    public User getUser() {
-        return user;
+    public Long getUser() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Long user) {
+        this.userId = user;
     }
 
-    public Integer getItemId() {
+    public Long getItemId() {
         return itemId;
     }
 
-    public void setItemId(Integer itemId) {
+    public void setItemId(Long itemId) {
         this.itemId = itemId;
     }
 
