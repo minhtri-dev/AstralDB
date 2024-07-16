@@ -15,7 +15,6 @@ import java.sql.Timestamp;
 
 import com.example.warptracker.model.API.HonkaiData;
 import com.example.warptracker.model.API.HonkaiData.Item;
-import com.example.warptracker.model.warptrackerdb.User;
 import com.example.warptracker.model.warptrackerdb.Warp;
 import com.example.warptracker.repository.WarpRepository;
 
