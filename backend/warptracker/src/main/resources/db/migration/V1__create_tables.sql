@@ -6,14 +6,16 @@ CREATE TABLE IF NOT EXISTS users (
   user_id INT PRIMARY KEY,
   username VARCHAR(255) UNIQUE,
   email VARCHAR(255) UNIQUE,
-  password VARCHAR(255) 
+  user_password VARCHAR(255) 
 );
 
 CREATE TABLE IF NOT EXISTS item (
   item_id INT PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
+  item_name VARCHAR(255) NOT NULL,
   item_type VARCHAR(255) NOT NULL,
-  rank_type INT NOT NULL
+  rank_type INT,
+  item_description TEXT NOT NULL,
+  item_path VARCHAR(255) 
 );
 
 CREATE TABLE IF NOT EXISTS warp (
