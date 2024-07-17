@@ -13,7 +13,7 @@ public class User {
     private Long userId;
 
     @Column(name = "hsr_uid")
-    private Long hsr_uid;
+    private Long hsrUid;
 
     @Column(name = "username", nullable = false, unique = true)
     private String username;
@@ -54,11 +54,11 @@ public class User {
     }
 
     public Long getHsrId() {
-        return hsr_uid;
+        return hsrUid;
     }
 
-    public void setHsrId(Long hsr_uid) {
-        this.hsr_uid = hsr_uid;
+    public void setHsrId(Long hsrUid) {
+        this.hsrUid = hsrUid;
     }
 
     public String getUsername() {
