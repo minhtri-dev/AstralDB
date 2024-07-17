@@ -8,4 +8,8 @@ import com.example.warptracker.model.warptrackerdb.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByHsrUid(Long hsr_uid);
+
+    User findByUsername(String username);
+
+    User findByEmail(String email);
 }

@@ -14,8 +14,23 @@ public class UserService {
     private UserRepository userRepository;
 
     public User getUserById(Long id) {
-        Optional<User> userOptional = userRepository.findById(id);
-        return userOptional.orElse(null); // Return null if user not found
+        Optional<User> user = userRepository.findById(id);
+        return user.orElse(null); // Return null if user not found
         // return userOptional.orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+    }
+
+    public User getUserByUid(Long uid) {
+        User user = userRepository.findByHsrUid(uid);
+        return user;
+    }
+
+    public User getUserByUsername(String username) {
+        User user = userRepository.findByUsername(username);
+        return user;
+    }
+
+    public User getUserByEmail(String email) {
+        User user = userRepository.findByEmail(email);
+        return user;
     }
 }

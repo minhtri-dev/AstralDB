@@ -14,7 +14,7 @@ import com.example.warptracker.repository.WarpRepository;
 import com.example.warptracker.model.warptrackerdb.Warp;
 
 @RestController
-@RequestMapping("/v1/api/getWarpRecord")
+@RequestMapping("/v1/api/warp")
 public class WarpController {
     @Autowired
     WarpRepository warpRepository;
@@ -22,7 +22,7 @@ public class WarpController {
     @Autowired
     WarpService warpService;
 
-    @PostMapping
+    @PostMapping("/getWarpRecord")
     public ResponseEntity<Collection<Warp>> all(@RequestBody JsonNode jsonNode) {
         String warpUrl = jsonNode.get("warp_url").asText();
         System.out.println(warpUrl);
