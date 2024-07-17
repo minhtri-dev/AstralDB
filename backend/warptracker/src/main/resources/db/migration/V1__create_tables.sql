@@ -4,9 +4,10 @@
 
 CREATE TABLE IF NOT EXISTS users (
   user_id INT PRIMARY KEY,
-  username VARCHAR(255) UNIQUE,
-  email VARCHAR(255) UNIQUE,
-  user_password VARCHAR(255) 
+  hsr_uid INT UNIQUE,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  user_password VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS item (
@@ -20,7 +21,8 @@ CREATE TABLE IF NOT EXISTS item (
 
 CREATE TABLE IF NOT EXISTS warp (
   warp_id INT PRIMARY KEY,
-  user_id INT,
+  user_id Int,
+  hsr_uid INT NOT NULL,
   item_id INT NOT NULL,
   gacha_id INT NOT NULL,
   gacha_type INT NOT NULL,

@@ -12,6 +12,9 @@ public class User {
     @Column(name = "user_id")
     private Long userId;
 
+    @Column(name = "hsr_uid")
+    private Long hsr_uid;
+
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
@@ -48,6 +51,14 @@ public class User {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Long getHsrId() {
+        return hsr_uid;
+    }
+
+    public void setHsrId(Long hsr_uid) {
+        this.hsr_uid = hsr_uid;
     }
 
     public String getUsername() {

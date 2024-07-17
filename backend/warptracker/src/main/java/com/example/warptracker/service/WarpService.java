@@ -66,6 +66,7 @@ public class WarpService {
                     // User user = new User(Long.valueOf(item.getUid()));
                     warps.add(new Warp(
                         Long.parseLong(item.getId()),
+                        null,
                         Long.valueOf(item.getUid()), 
                         Long.parseLong(item.getItemId()), 
                         Integer.parseInt(item.getGachaId()),
