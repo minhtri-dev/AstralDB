@@ -16,6 +16,8 @@ import java.sql.Timestamp;
 import com.example.warptracker.model.API.HonkaiData;
 import com.example.warptracker.model.API.HonkaiData.Item;
 import com.example.warptracker.model.warptrackerdb.Warp;
+import com.example.warptracker.model.warptrackerdb.User;
+import com.example.warptracker.repository.UserRepository;
 import com.example.warptracker.repository.WarpRepository;
 
 @Service
@@ -23,6 +25,9 @@ public class WarpService {
 
     @Autowired
     private WarpRepository warpRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     RestTemplate restTemplate = new RestTemplate();
@@ -62,11 +67,11 @@ public class WarpService {
             
             while (!items.isEmpty()) {
                 for (Item item : items) {
-                    // Use UID to find user in DB, if user isnt in database use the uid from the api
-                    // User user = new User(Long.valueOf(item.getUid()));
+                    // Use UID to find user in DB, if user isnt in database, set user as null
+                    User user = userRepository.findByHsrUid(Long.valueOf(item.getUid()));
                     warps.add(new Warp(
                         Long.parseLong(item.getId()),
-                        null,
+                        user.getHsrId(),
                         Long.valueOf(item.getUid()), 
                         Long.parseLong(item.getItemId()), 
                         Integer.parseInt(item.getGachaId()),
