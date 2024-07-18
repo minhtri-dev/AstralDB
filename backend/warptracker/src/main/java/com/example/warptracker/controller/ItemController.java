@@ -33,8 +33,8 @@ public class ItemController {
                                       .collect(Collectors.toList());
 
         // Print individual IDs for debugging
-        System.out.println("Received IDs:");
-        ids.forEach(id -> System.out.println("ID: " + id));
+        // System.out.println("Received IDs:");
+        // ids.forEach(id -> System.out.println("ID: " + id));
         
         List<Item> items = itemRepository.findAllById(ids);
         
