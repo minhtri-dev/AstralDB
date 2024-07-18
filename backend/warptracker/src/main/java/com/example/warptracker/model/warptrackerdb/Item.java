@@ -11,7 +11,7 @@ public class Item {
     @Column(name = "item_id")
     private Long itemId;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "item_name", nullable = false)
     private String name;
 
     @Column(name = "item_type", nullable = false)

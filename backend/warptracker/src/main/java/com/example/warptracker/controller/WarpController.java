@@ -14,7 +14,7 @@ import com.example.warptracker.repository.WarpRepository;
 import com.example.warptracker.model.warptrackerdb.Warp;
 
 @RestController
-@RequestMapping("/v1/api/warp")
+@RequestMapping("/api/v1/warps")
 public class WarpController {
     @Autowired
     WarpRepository warpRepository;
