@@ -19,6 +19,17 @@ CREATE TABLE IF NOT EXISTS item (
   item_path VARCHAR(255) 
 );
 
+CREATE TABLE IF NOT EXISTS banner (
+  gacha_id INT PRIMARY KEY,
+  warp_id INT,
+  user_count INT,
+  number_of_warps INT,
+  jade_spent INT,
+  avg_5_pity INT,
+  avg_4_pity INT,
+  rate_5050 FLOAT
+);
+
 CREATE TABLE IF NOT EXISTS warp (
   warp_id INT PRIMARY KEY,
   user_id Int,
@@ -29,5 +40,6 @@ CREATE TABLE IF NOT EXISTS warp (
   pity INT,
   warp_time DATETIME NOT NULL,
   FOREIGN KEY (user_id) REFERENCES users(user_id),
-  FOREIGN KEY (item_id) REFERENCES item(item_id)
+  FOREIGN KEY (item_id) REFERENCES item(item_id),
+  FOREIGN KEY (gacha_id) REFERENCES banner(gacha_id)
 );
