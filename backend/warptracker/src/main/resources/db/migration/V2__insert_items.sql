@@ -16,7 +16,7 @@ SELECT
   rank_type,
   item_description,
   item_path
-FROM CSVREAD('/tmp/honkaidata.csv');
+FROM CSVREAD('classpath:/csv/honkaidata.csv');
 
 -- Inserting into target table
 INSERT INTO item (item_id, item_name, item_type, rank_type, item_description, item_path)
