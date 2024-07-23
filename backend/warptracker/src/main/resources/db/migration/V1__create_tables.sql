@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS item (
 
 CREATE TABLE IF NOT EXISTS banner (
   gacha_id INT PRIMARY KEY,
-  warp_id INT,
+  banner_name VARCHAR(255) NOT NULL,
   user_count INT,
   number_of_warps INT,
   jade_spent INT,
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS banner (
 
 CREATE TABLE IF NOT EXISTS warp (
   warp_id INT PRIMARY KEY,
-  user_id Int,
+  user_id INT,
   hsr_uid INT NOT NULL,
   item_id INT NOT NULL,
   gacha_id INT NOT NULL,
