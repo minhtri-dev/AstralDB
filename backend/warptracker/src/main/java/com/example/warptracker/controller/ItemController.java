@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,5 +40,10 @@ public class ItemController {
         List<Item> items = itemRepository.findAllById(ids);
         
         return items;
+    }
+
+    @GetMapping()
+        public List<Item> getAllBanners() {
+        return itemRepository.findAll();
     }
 }
