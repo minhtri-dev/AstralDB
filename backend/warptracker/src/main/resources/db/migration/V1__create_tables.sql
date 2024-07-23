@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS banner (
   gacha_id INT PRIMARY KEY,
   banner_name VARCHAR(255) NOT NULL,
   user_count INT,
-  number_of_warps INT,
+  warp_count INT,
   jade_spent INT,
   avg_5_pity INT,
   avg_4_pity INT,

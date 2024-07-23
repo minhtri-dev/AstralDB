@@ -1,4 +1,4 @@
-gacha_id,banner_name,user_count,number_of_warps,jade_spent,avg_5_pity,avg_4_pity,rate_5050
+gacha_id,banner_name,user_count,warp_count,jade_spent,avg_5_pity,avg_4_pity,rate_5050
 1001,Steller Warp,,,,,,
 1002,Departure Warp,,,,,,
 2003,Butterfly on Swordtip,,,,,,
