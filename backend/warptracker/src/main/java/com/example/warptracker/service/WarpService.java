@@ -50,28 +50,36 @@ public class WarpService {
     }
 
     public List<Warp> getWarpsFromApi(String api_url) {
-        HonkaiData honkaiData = new HonkaiData();
-        List<Warp> warps = new ArrayList<>();
-        String url = "";
-        String end_id = "0";
-
         try {
+            HonkaiData honkaiData = new HonkaiData();
+            List<Warp> warps = new ArrayList<>();
+            String url = "";
+            String end_id = "0";
+
+            ArrayList<Integer> gachaTypes = new ArrayList<>(Arrays.asList(1, 2, 11, 12));
+
             UriComponentsBuilder urlBuilder = UriComponentsBuilder.fromUriString(api_url)
                 .queryParam("size", "20")
                 .queryParam("end_id", end_id)
+                // Need to go through all banner types
                 .queryParam("gacha_type", "12");
             url = urlBuilder.build().toUriString();
 
             honkaiData = httpRequest(url); 
+            if (honkaiData == null) {
+                throw new RuntimeException("Failed to retrieve data from API: honkaiData is null.");
+            }
             List<Item> items = honkaiData.getData().getList();
-            
+            Long hsrId = Long.parseLong(items.get(0).getUid());
+
             while (!items.isEmpty()) {
                 for (Item item : items) {
                     // Use UID to find user in DB, if user isnt in database, set user as null
                     User user = userRepository.findByHsrUid(Long.valueOf(item.getUid()));
                     warps.add(new Warp(
                         Long.parseLong(item.getId()),
-                        user.getHsrId(),
+                        hsrId,
+                        // Long.parseLong(item.getHsrId()),
                         Long.valueOf(item.getUid()), 
                         Long.parseLong(item.getItemId()), 
                         Integer.parseInt(item.getGachaId()),
@@ -86,7 +94,6 @@ public class WarpService {
                 honkaiData = httpRequest(url); 
                 if (items != null) {
                     items = honkaiData.getData().getList();
-                    // throw exception here
                 }
             }
             // Update warptracker database
