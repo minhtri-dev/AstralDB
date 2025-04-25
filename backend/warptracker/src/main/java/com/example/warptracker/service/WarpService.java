@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
+import java.util.Arrays;
 import java.util.ArrayList;
 import com.google.gson.Gson;
 import java.sql.Timestamp;
@@ -50,14 +51,13 @@ public class WarpService {
     }
 
     public List<Warp> getWarpsFromApi(String api_url) {
+        List<Warp> warps = new ArrayList<>();
+        HonkaiData honkaiData = new HonkaiData();
+        String url = "";
+        String end_id = "0";
+        ArrayList<Integer> gachaTypes = new ArrayList<>(Arrays.asList(1, 2, 11, 12));
+
         try {
-            HonkaiData honkaiData = new HonkaiData();
-            List<Warp> warps = new ArrayList<>();
-            String url = "";
-            String end_id = "0";
-
-            ArrayList<Integer> gachaTypes = new ArrayList<>(Arrays.asList(1, 2, 11, 12));
-
             UriComponentsBuilder urlBuilder = UriComponentsBuilder.fromUriString(api_url)
                 .queryParam("size", "20")
                 .queryParam("end_id", end_id)
