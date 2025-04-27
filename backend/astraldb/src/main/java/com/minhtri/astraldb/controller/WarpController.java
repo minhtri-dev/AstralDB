@@ -1,6 +1,7 @@
 package com.minhtri.astraldb.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,8 @@ public class WarpController {
     @Autowired
     WarpService warpService;
 
-    private static final String API_URL = "https://public-operation-hkrpg-sg.hoyoverse.com/common/gacha_record/api/getGachaLog";
+    @Value("${warp.api.url}")
+    private String API_URL;
 
     @GetMapping("/getWarpLog")
     public ResponseEntity<?> fetchWarps(
