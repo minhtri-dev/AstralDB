@@ -9,13 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.UriComponentsBuilder;
-import com.fasterxml.jackson.databind.JsonNode;
-import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 
-
-import com.minhtri.astraldb.types.GachaType;
 import com.minhtri.astraldb.service.WarpService;
 import com.minhtri.astraldb.repository.WarpRepository;
 import com.minhtri.astraldb.model.warptrackerdb.Warp;

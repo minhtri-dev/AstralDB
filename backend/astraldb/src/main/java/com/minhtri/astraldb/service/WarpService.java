@@ -7,14 +7,11 @@ import java.net.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
-import java.util.Arrays;
 import java.util.ArrayList;
 import com.google.gson.Gson;
 import java.sql.Timestamp;
 
-import com.minhtri.astraldb.types.GachaType;
 import com.minhtri.astraldb.model.API.HonkaiData;
 import com.minhtri.astraldb.model.API.HonkaiData.Item;
 import com.minhtri.astraldb.model.warptrackerdb.Warp;
