@@ -37,6 +37,7 @@ public class WarpService {
     HttpClient httpClient = HttpClient.newHttpClient();
     Gson gson = new Gson();
 
+
     public HonkaiData httpRequest(String api_url) {
         try {
             HttpRequest getRequest = HttpRequest.newBuilder()
@@ -53,59 +54,30 @@ public class WarpService {
 
     public List<Warp> getWarpsFromApi(String api_url) {
         List<Warp> warps = new ArrayList<>();
-        List<GachaType> gachaTypes = Arrays.asList(
-            GachaType.STANDARD,
-            GachaType.BEGINNER,
-            GachaType.LIMITED_CHARACTER,
-            GachaType.LIMITED_WEAPON
-        );
 
-        try {
-            for (GachaType gachaType : gachaTypes) {
-            String end_id = "0";
-            boolean hasMore = true;
-
-            while (hasMore) {
-                String url = UriComponentsBuilder.fromUriString(api_url)
-                    .queryParam("size", "20")
-                    .queryParam("end_id", end_id)
-                    .queryParam("gacha_type", gachaType.getId())
-                    .build().toUriString();
-
-                HonkaiData honkaiData = httpRequest(url);
-                if (honkaiData == null || honkaiData.getData() == null) break;
-
-                List<Item> items = honkaiData.getData().getList();
-                if (items == null || items.isEmpty()) break;
-
-                for (Item item : items) {
-                    User user = userRepository.findByHsrUid(Long.valueOf(item.getUid()));
-                    Long user_id = null;
-                    if (user != null) {
-                        user_id = user.getUserId();
-                    }
-                    warps.add(new Warp(
-                        Long.parseLong(item.getId()),
-                        user_id,
-                        Long.valueOf(item.getUid()), 
-                        Long.parseLong(item.getItemId()), 
-                        Integer.parseInt(item.getGachaId()),
-                        item.getGachaType(),
-                        null,
-                        Timestamp.valueOf(item.getTime())
-                    ));
-                    end_id = item.getId();
-                }
-
-                hasMore = items.size() == 20;
+        HonkaiData honkaiData = httpRequest(api_url);
+        if (honkaiData == null || honkaiData.getData() == null) {
+            throw new IllegalStateException(honkaiData.getMessage());
+        }
+        List<Item> items = honkaiData.getData().getList();
+        for (Item item : items) {
+            User user = userRepository.findByHsrUid(Long.valueOf(item.getUid()));
+            Long user_id = null;
+            if (user != null) {
+                user_id = user.getUserId();
             }
+            warps.add(new Warp(
+                Long.parseLong(item.getId()),
+                user_id,
+                Long.valueOf(item.getUid()), 
+                Long.parseLong(item.getItemId()), 
+                Integer.parseInt(item.getGachaId()),
+                item.getGachaType(),
+                null,
+                Timestamp.valueOf(item.getTime())
+            ));
         }
-
         warpRepository.saveAll(warps);
-        } catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
-        }
         
         return warps;
     }
