@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import com.google.gson.Gson;
 import java.sql.Timestamp;
 
+import com.example.warptracker.types.GachaType;
 import com.example.warptracker.model.API.HonkaiData;
 import com.example.warptracker.model.API.HonkaiData.Item;
 import com.example.warptracker.model.warptrackerdb.Warp;
@@ -52,34 +53,40 @@ public class WarpService {
 
     public List<Warp> getWarpsFromApi(String api_url) {
         List<Warp> warps = new ArrayList<>();
-        HonkaiData honkaiData = new HonkaiData();
-        String url = "";
-        String end_id = "0";
-        ArrayList<Integer> gachaTypes = new ArrayList<>(Arrays.asList(1, 2, 11, 12));
+        List<GachaType> gachaTypes = Arrays.asList(
+            GachaType.STANDARD,
+            GachaType.BEGINNER,
+            GachaType.LIMITED_CHARACTER,
+            GachaType.LIMITED_WEAPON
+        );
 
         try {
-            UriComponentsBuilder urlBuilder = UriComponentsBuilder.fromUriString(api_url)
-                .queryParam("size", "20")
-                .queryParam("end_id", end_id)
-                // Need to go through all banner types
-                .queryParam("gacha_type", "12");
-            url = urlBuilder.build().toUriString();
+            for (GachaType gachaType : gachaTypes) {
+            String end_id = "0";
+            boolean hasMore = true;
 
-            honkaiData = httpRequest(url); 
-            if (honkaiData == null) {
-                throw new RuntimeException("Failed to retrieve data from API: honkaiData is null.");
-            }
-            List<Item> items = honkaiData.getData().getList();
-            Long hsrId = Long.parseLong(items.get(0).getUid());
+            while (hasMore) {
+                String url = UriComponentsBuilder.fromUriString(api_url)
+                    .queryParam("size", "20")
+                    .queryParam("end_id", end_id)
+                    .queryParam("gacha_type", gachaType.getId())
+                    .build().toUriString();
 
-            while (!items.isEmpty()) {
+                HonkaiData honkaiData = httpRequest(url);
+                if (honkaiData == null || honkaiData.getData() == null) break;
+
+                List<Item> items = honkaiData.getData().getList();
+                if (items == null || items.isEmpty()) break;
+
                 for (Item item : items) {
-                    // Use UID to find user in DB, if user isnt in database, set user as null
                     User user = userRepository.findByHsrUid(Long.valueOf(item.getUid()));
+                    Long user_id = null;
+                    if (user != null) {
+                        user_id = user.getUserId();
+                    }
                     warps.add(new Warp(
                         Long.parseLong(item.getId()),
-                        hsrId,
-                        // Long.parseLong(item.getHsrId()),
+                        user_id,
                         Long.valueOf(item.getUid()), 
                         Long.parseLong(item.getItemId()), 
                         Integer.parseInt(item.getGachaId()),
@@ -89,15 +96,12 @@ public class WarpService {
                     ));
                     end_id = item.getId();
                 }
-                urlBuilder.replaceQueryParam("end_id", end_id);
-                url = urlBuilder.build().toUriString();
-                honkaiData = httpRequest(url); 
-                if (items != null) {
-                    items = honkaiData.getData().getList();
-                }
+
+                hasMore = items.size() == 20;
             }
-            // Update warptracker database
-            warpRepository.saveAll(warps);
+        }
+
+        warpRepository.saveAll(warps);
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();

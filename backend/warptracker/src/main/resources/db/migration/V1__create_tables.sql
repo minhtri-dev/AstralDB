@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS banner (
 );
 
 CREATE TABLE IF NOT EXISTS warp (
-  warp_id INT PRIMARY KEY,
+  warp_id BIGINT PRIMARY KEY,
   user_id INT,
   hsr_uid INT NOT NULL,
   item_id INT NOT NULL,
