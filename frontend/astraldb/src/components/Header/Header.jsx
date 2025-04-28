@@ -7,9 +7,12 @@ import {
   navLinksStyle,
   loginButtonStyle,
   loginButtonHoverStyle
-} from './headerStyle'; // Make sure your headerStyle.js has all styles exported correctly
+} from './headerStyle'; 
+import { useNavigate } from 'react-router-dom'; // <-- add this to handle navigation
 
 const Header = () => {
+  const navigate = useNavigate(); // <-- initialize navigate function
+
   // Helper functions for hover effect
   const handleLinkHover = (e) => {
     e.target.style.color = linkHoverStyle.color;
@@ -25,6 +28,10 @@ const Header = () => {
 
   const handleButtonOut = (e) => {
     e.target.style.backgroundColor = loginButtonStyle.backgroundColor;
+  };
+
+  const handleLoginClick = () => {
+    navigate('/login'); 
   };
 
   return (
@@ -52,6 +59,7 @@ const Header = () => {
         style={loginButtonStyle}
         onMouseOver={handleButtonHover}
         onMouseOut={handleButtonOut}
+        onClick={handleLoginClick} 
       >
         Login
       </button>

@@ -11,7 +11,10 @@ function App() {
       <Header />
       <div style={ContentBackgroundStyle} /> 
       <Routes>
-        <Route path="/" element={<Pages.WarpTracker />} />
+        <Route path="/" element={<Pages.Home />} />
+        <Route path="/tracker" element={<Pages.WarpTracker />} />
+        <Route path="/login" element={<Pages.Login />} />
+        <Route path="/import" element={<Pages.Import />} />
       </Routes>
       <Footer />
       </BrowserRouter>

@@ -39,5 +39,5 @@ export const loginButtonStyle = {
 };
 
 export const loginButtonHoverStyle = {
-    backgroundColor: '#3b5bdb',
+    backgroundColor: '#0085A0',
 };
