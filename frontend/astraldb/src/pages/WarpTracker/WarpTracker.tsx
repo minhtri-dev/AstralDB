@@ -1,7 +1,6 @@
-import React from 'react'
 import { Sidebar, WarpList, WarpStats } from './components';
 
-const WarpTrackerPage = () => {
+const WarpTracker = () => {
   return (
     <div>
       <div className="d-flex">
@@ -17,4 +16,4 @@ const WarpTrackerPage = () => {
   )
 }
 
-export default WarpTrackerPage
+export default WarpTracker

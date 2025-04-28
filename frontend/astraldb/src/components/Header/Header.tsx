@@ -1,4 +1,3 @@
-import React from 'react';
 import { 
   navbarStyle, 
   brandStyle, 
@@ -14,19 +13,19 @@ const Header = () => {
   const navigate = useNavigate(); // <-- initialize navigate function
 
   // Helper functions for hover effect
-  const handleLinkHover = (e) => {
+  const handleLinkHover = (e: any) => {
     e.target.style.color = linkHoverStyle.color;
   };
 
-  const handleLinkOut = (e) => {
+  const handleLinkOut = (e: any) => {
     e.target.style.color = linkStyle.color;
   };
 
-  const handleButtonHover = (e) => {
+  const handleButtonHover = (e: any) => {
     e.target.style.backgroundColor = loginButtonHoverStyle.backgroundColor;
   };
 
-  const handleButtonOut = (e) => {
+  const handleButtonOut = (e: any) => {
     e.target.style.backgroundColor = loginButtonStyle.backgroundColor;
   };
 

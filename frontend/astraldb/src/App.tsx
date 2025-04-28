@@ -2,14 +2,18 @@ import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import * as Pages from './pages';
-import { ContentBackgroundStyle } from './appStyling';
+import { ContentBackground } from './appStyling';
 
 
 function App() {
   return (
+    <>
       <BrowserRouter>
       <Header />
-      <div style={ContentBackgroundStyle} /> 
+
+      <div>
+        <ContentBackground />
+      </div>
       <Routes>
         <Route path="/" element={<Pages.Home />} />
         <Route path="/tracker" element={<Pages.WarpTracker />} />
@@ -18,7 +22,7 @@ function App() {
       </Routes>
       <Footer />
       </BrowserRouter>
-
+    </>
   );
 }
 
