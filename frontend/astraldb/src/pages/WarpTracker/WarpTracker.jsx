@@ -1,7 +1,5 @@
 import React from 'react'
-import Sidebar from './Sidebar';
-import WarpStats from './WarpStats';
-import WarpList from './WarpList';
+import { Sidebar, WarpList, WarpStats } from './components';
 
 const WarpTrackerPage = () => {
   return (
