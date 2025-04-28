@@ -1,7 +1,7 @@
 // appstyling.js
 
 export const ContentBackgroundStyle = {
-  backgroundImage: 'linear-gradient(180deg, transparent, #23242a 80%), url(/hsr-background.png)', // Updated gradient and image
+  backgroundImage: 'linear-gradient(180deg, transparent, #282828 80%), url(/hsr-background.png)', // Updated gradient and image
   backgroundSize: 'cover', // Make sure the background covers the entire viewport
   backgroundPosition: 'center', // Center the background
   backgroundRepeat: 'no-repeat', 
