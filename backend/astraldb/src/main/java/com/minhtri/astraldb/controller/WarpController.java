@@ -3,6 +3,7 @@ package com.minhtri.astraldb.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +28,8 @@ public class WarpController {
 
     private static final String API_URL = "https://public-operation-hkrpg-sg.hoyoverse.com/common/gacha_record/api/getGachaLog";
 
-    @GetMapping("/getWarpLog")
+    @CrossOrigin
+    @GetMapping("/getWarpLog") // Import?
     public ResponseEntity<?> fetchWarps(
         @RequestParam String gacha_type,
         @RequestParam(defaultValue = "0") String endId,
