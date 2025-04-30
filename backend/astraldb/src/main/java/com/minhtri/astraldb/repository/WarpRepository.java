@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.minhtri.astraldb.model.warptrackerdb.Warp;
 
 @Repository
-public interface WarpRepository extends JpaRepository<Warp, Long> {
+public interface WarpRepository extends JpaRepository<Warp, String> {
 }
