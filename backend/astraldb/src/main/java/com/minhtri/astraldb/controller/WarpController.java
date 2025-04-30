@@ -32,7 +32,7 @@ public class WarpController {
     @GetMapping("/getWarpLog") // Import?
     public ResponseEntity<?> fetchWarps(
         @RequestParam String gacha_type,
-        @RequestParam(defaultValue = "0") String endId,
+        @RequestParam(defaultValue = "0") String end_id,
         @RequestParam String authkey_ver,
         @RequestParam String authkey,
         @RequestParam String sign_type
@@ -42,7 +42,7 @@ public class WarpController {
 
             String warpUrl = UriComponentsBuilder.fromHttpUrl(API_URL)
                 .queryParam("gacha_type", gacha_type)
-                .queryParam("end_id", endId)
+                .queryParam("end_id", end_id)
                 .queryParam("authkey_ver", authkey_ver)
                 .queryParam("authkey", encodedAuthKey)
                 .queryParam("sign_type", sign_type)

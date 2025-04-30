@@ -51,7 +51,6 @@ public class WarpService {
 
     public List<Warp> getWarpsFromApi(String api_url) {
         List<Warp> warps = new ArrayList<>();
-
         HonkaiData honkaiData = httpRequest(api_url);
         if (honkaiData == null || honkaiData.getData() == null) {
             throw new IllegalStateException(honkaiData.getMessage());
@@ -64,7 +63,7 @@ public class WarpService {
                 user_id = user.getUserId();
             }
             warps.add(new Warp(
-                Long.parseLong(item.getId()),
+                item.getId(),
                 user_id,
                 Long.valueOf(item.getUid()), 
                 Long.parseLong(item.getItemId()), 
