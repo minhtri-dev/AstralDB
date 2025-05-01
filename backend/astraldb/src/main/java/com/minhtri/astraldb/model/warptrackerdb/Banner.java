@@ -33,6 +33,9 @@ public class Banner {
     @Column(name = "rate_5050")
     private Float rate5050;
 
+    @Column(name = "image_url")
+    private String imgUrl;
+
     @OneToMany(mappedBy = "gachaId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Warp> warps;
 
@@ -100,6 +103,14 @@ public class Banner {
 
     public void setRate5050(Float rate5050) {
         this.rate5050 = rate5050;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public Set<Warp> getWarps() {
