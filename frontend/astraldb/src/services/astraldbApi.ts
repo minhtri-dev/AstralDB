@@ -7,20 +7,28 @@ function sleep(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-export async function fetchWarpData(urlString: string) {
+export async function fetchWarpData(
+  urlString: string,
+  gacha_type: string,
+  onProgress?: (progress: { page: number; total: number }) => void
+) {
   const authkey = getQueryParam(urlString, 'authkey')
   const authkey_ver = getQueryParam(urlString, 'authkey_ver')
   const sign_type = getQueryParam(urlString, 'sign_type')
-  const gacha_type = 11
   const size = 20
 
   let page = 1
   let end_id = '0'
   let lastLen = 0
-  const warps: any[] = []
+  const warps: WarpRecord[] = []
 
   try {
-    const latestSaved = await db.warps.orderBy('warpId').last()
+    const latestSaved = await db.warps
+      .where('gachaType')
+      .equals(gacha_type)
+      .sortBy('warpId')
+      .then(results => results[results.length - 1] ?? null);
+
     const lastWarpId = latestSaved?.warpId ?? '0'
 
     do {
@@ -49,6 +57,8 @@ export async function fetchWarpData(urlString: string) {
       if (lastLen > 0) {
         end_id = data[data.length - 1].warpId;
       }
+
+      onProgress?.({ page, total: warps.length })
 
       page++;
       await sleep(500)

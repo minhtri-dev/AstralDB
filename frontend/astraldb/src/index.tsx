@@ -4,8 +4,7 @@ import './index.css'
 
 import * as Pages from './pages'
 import { Route, Routes, BrowserRouter } from 'react-router'
-import { Footer, NavBar } from './components'
-import Background from './components/Background/Background'
+import { Footer, NavBar, Background } from './components'
 
 function App() {
   return (
