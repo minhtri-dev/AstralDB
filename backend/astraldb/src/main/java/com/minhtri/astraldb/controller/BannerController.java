@@ -21,3 +21,8 @@ public class BannerController {
         return bannerRepository.findAll();
     }
 }
+
+
+// GET /api/v1/banners            -> list of all banners (no warps)
+// GET /api/v1/banners/{id}       -> banner details 
+// GET /api/v1/banners/{id}/warps -> only the warps for that banner

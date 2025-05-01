@@ -36,8 +36,8 @@ public class Banner {
     @Column(name = "image_url")
     private String imgUrl;
 
-    @OneToMany(mappedBy = "gachaId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Warp> warps;
+    // @OneToMany(mappedBy = "gachaId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    // private Set<Warp> warps;
 
     // Getters and Setters
 
@@ -113,11 +113,11 @@ public class Banner {
         this.imgUrl = imgUrl;
     }
 
-    public Set<Warp> getWarps() {
-        return warps;
-    }
+    // public Set<Warp> getWarps() {
+    //     return warps;
+    // }
 
-    public void setWarps(Set<Warp> warps) {
-        this.warps = warps;
-    }
+    // public void setWarps(Set<Warp> warps) {
+    //     this.warps = warps;
+    // }
 }
