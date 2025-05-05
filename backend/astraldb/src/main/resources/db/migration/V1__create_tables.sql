@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS warp;
 DROP TABLE IF EXISTS Item;
+DROP TABLE IF EXISTS banner;
 
 CREATE TABLE IF NOT EXISTS users (
   user_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -28,7 +29,9 @@ CREATE TABLE IF NOT EXISTS banner (
   avg_5_pity INT,
   avg_4_pity INT,
   rate_5050 FLOAT,
-  image_url VARCHAR(255)
+  image_url VARCHAR(255),
+  item_id INT,
+  FOREIGN KEY (item_id) REFERENCES item(item_id)
 );
 
 CREATE TABLE IF NOT EXISTS warp (
