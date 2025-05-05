@@ -42,41 +42,29 @@ const WarpTracker = () => {
         {/* Main content */}
       {/* </main> */}
       <div className="w-full pt-10 text-white max-w-screen-xl px-3">
-        <h2 className="text-2xl text-gray-400 mb-4">
-          Warp Tracker
-        </h2>
-        <div className="flex flex-col md:flex-row bg-[#1c2029b0] backdrop-blur-md rounded-xl p-6 mx-auto border border-[#37383a]">
-          <div className="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
-            <div
-              className="absolute bg-[#553b92]"
-              style={{
-                bottom: 0,
-                left: '150px',
-                height: '506px',
-                width: '400px',
-                transform: 'skewX(-10deg)',
-                WebkitTransform: 'skewX(-10deg)',
-              }}
-            ></div>
-            <img
-              src="/Banners/contract-zero.png"
-              alt="Character"
-              className="relative w-140 h-110 object-cover rounded-lg"
-            />
-          </div>
-          
-          
-          <div className='w-full px-4 md:px-8'>
+        <div className="flex items-center gap-4 mb-5">
+          <h2 className="text-2xl text-gray-400">
+            Warp Tracker
+          </h2>
+          <button className="bg-surface h-9 rounded-lg border border-gray-400 text-gray-400 px-3 hover:border-white hover:text-white font-medium cursor-pointer">
+            Select Banner
+          </button>
+        </div>
+        <div className="flex bg-[#1c2029b0] p-4 backdrop-blur-md rounded-xl border border-[#37383a]">
+          {/* Left half (warp stats) */}
+          <div className="w-[60%] px-4 mb-4">
             <div className="flex items-center my-2">
               <div className="flex-grow border-t border-[#37383a]"></div>
                 <span className="mx-3 text-gray-400">Character Banner</span>
               <div className="flex-grow border-t border-[#37383a]"></div>
             </div>
+
             <div>
               <h2 className="text-2xl font-bold mb-4">
                 {banners.find(b => b.id === selected)?.name || 'Loading...'}
               </h2>
               <div className="bg-[#181c24] rounded-md p-3 border border-[#37383a] grid grid-cols-2 md:grid-cols-3 gap-2 text-white">
+                {/* Stat Items */}
                 <div>
                   <h3 className="text-sm font-semibold text-gray-300">5★ Pity</h3>
                   <p className="text-yellow-400 text-sm">16 / 90</p>
@@ -87,74 +75,44 @@ const WarpTracker = () => {
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold text-gray-300">Total Warps</h3>
-                  <p className='text-sm'>429</p>
+                  <p className="text-sm">429</p>
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold text-gray-300">Jade Spend</h3>
-                  <p className='text-sm'>68,640</p>
+                  <p className="text-sm">68,640</p>
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold text-gray-300">Avg 5★</h3>
-                  <p className='text-sm'>52</p>
+                  <p className="text-sm">52</p>
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold text-gray-300">Avg 4★</h3>
-                  <p className='text-sm'>7</p>
+                  <p className="text-sm">7</p>
                 </div>
                 <div className="col-span-2 md:col-span-3">
                   <h3 className="text-sm font-semibold text-gray-300">50/50 Win Rate</h3>
-                  <p className='text-sm'>58.18%</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Divider and spacing */}
-            <div className="flex items-center my-4">
-              <div className="flex-grow border-t border-[#37383a]"></div>
-                <span className="mx-3 text-gray-400">Light Cone Banner</span>
-              <div className="flex-grow border-t border-[#37383a]"></div>
-            </div>
-
-            <div>
-              <h2 className="text-2xl font-bold mb-4">Incessant Rain</h2>
-              <div className="bg-[#181c24] rounded-md p-3 border border-[#37383a] grid grid-cols-2 md:grid-cols-3 gap-1 text-white">
-                <div>
-                  <h3 className="text-sm font-semibold text-gray-300">5★ Pity</h3>
-                  <p className="text-yellow-400 text-sm">16 / 90</p>
-                </div>
-                <div>
-                  <h3 className="text-sm font-semibold text-gray-300">4★ Pity</h3>
-                  <p className="text-purple-400 text-sm">2 / 10</p>
-                </div>
-                <div>
-                  <h3 className="text-sm font-semibold text-gray-300">Total Warps</h3>
-                  <p className='text-sm'>429</p>
-                </div>
-                <div>
-                  <h3 className="text-sm font-semibold text-gray-300">Jade Spend</h3>
-                  <p className='text-sm'>68,640</p>
-                </div>
-                <div>
-                  <h3 className="text-sm font-semibold text-gray-300">Avg 5★</h3>
-                  <p className='text-sm'>52</p>
-                </div>
-                <div>
-                  <h3 className="text-sm font-semibold text-gray-300">Avg 4★</h3>
-                  <p className='text-sm'>7</p>
-                </div>
-                <div className="col-span-2 md:col-span-3">
-                  <h3 className="text-sm font-semibold text-gray-300">50/50 Win Rate</h3>
-                  <p className='text-sm'>58.18%</p>
+                  <p className="text-sm">58.18%</p>
                 </div>
               </div>
             </div>
           </div>
+          {/* RIght half (image) */}
+          <div>
+            <div className="absolute bottom-0 right-[60px] h-[297px] w-[400px] bg-[#553b92] [transform:skewX(-10deg)]">
+              <div style={{ writingMode: 'vertical-rl' }} className="relative text-left rotate-180 overflow-hidden text-clip max-h-[297px] break-words">
+                <a style={{ fontFamily: '"Space Grotesk", sans-serif' }} className="uppercase font-bold font-space-grotesk text-7xl">Silver Wolf</a>
+              </div>
+            </div>
+            <img
+              src="/Banners/contract-zero.png"
+              className="absolute w-120 -right-10 bottom-0 object-cover rounded-lg"
+            />
+          </div>
         </div>
-
-        <h2 className="text-2xl text-gray-400 mb-4">
-          Warp List
+      
+        <h2 className="text-2xl text-gray-400 mb-5 mt-10">
+          Warp Record
         </h2>
-
       </div>
     </div>
   )
