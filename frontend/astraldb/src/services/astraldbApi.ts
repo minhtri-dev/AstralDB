@@ -46,16 +46,16 @@ export async function fetchWarpData(
       const data = response.data
 
       if (!Array.isArray(data)) {
-        console.warn('Unexpected data format:', data);
+        console.warn('Unexpected data format:', data)
         break;
       }
 
-      const newWarps = data.filter((item: any) => item.warpId > lastWarpId);
-      warps.push(...newWarps);
-      lastLen = newWarps.length;
+      const newWarps = data.filter((item: any) => item.warpId > lastWarpId)
+      warps.push(...newWarps)
+      lastLen = newWarps.length
 
       if (lastLen > 0) {
-        end_id = data[data.length - 1].warpId;
+        end_id = data[data.length - 1].warpId
       }
 
       onProgress?.({ page, total: warps.length })
