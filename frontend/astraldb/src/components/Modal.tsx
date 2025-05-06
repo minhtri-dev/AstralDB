@@ -1,9 +1,9 @@
-import { useEffect, ReactNode } from 'react';
+import { useEffect, ReactNode } from 'react'
 
 type ModalProps = {
-  isOpen: boolean;
-  onClose: () => void;
-  children: ReactNode;
+  isOpen: boolean
+  onClose: () => void
+  children: ReactNode
 };
 
 const Modal = ({ isOpen, onClose, children }: ModalProps) => {
@@ -12,15 +12,15 @@ const Modal = ({ isOpen, onClose, children }: ModalProps) => {
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        onClose();
+        onClose()
       }
     };
 
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, onClose]);
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [isOpen, onClose])
 
-  if (!isOpen) return null;
+  if (!isOpen) return null
 
   return (
     <div className="fixed inset-0 bg-[#1c2029b0] z-50 flex items-center justify-center">
@@ -37,4 +37,4 @@ const Modal = ({ isOpen, onClose, children }: ModalProps) => {
   );
 };
 
-export default Modal;
+export default Modal

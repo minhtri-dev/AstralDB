@@ -1,11 +1,11 @@
-import { useNavigate } from 'react-router';
-import { Icon } from '@iconify-icon/react';
+import { useNavigate } from 'react-router'
+import { Icon } from '@iconify-icon/react'
 
-const Header = () => {
-  const navigate = useNavigate();
+const Navbar = () => {
+  const navigate = useNavigate()
 
   const handleLoginClick = () => {
-    navigate('/login');
+    navigate('/login')
   };
 
   return (
@@ -47,4 +47,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Navbar

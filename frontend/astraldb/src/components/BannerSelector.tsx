@@ -1,48 +1,47 @@
-import { useEffect, useState } from 'react';
-import { Banner } from '../../types/bannerType'
+import { useEffect, useState } from 'react'
 
 type Props = {
-  selected: Banner | null;
-  onSelect: (banner: Banner) => void;
-  banners: Banner[];
-  setBanners: (b: Banner[]) => void;
+  selected: Banner | null
+  onSelect: (banner: Banner) => void
+  banners: Banner[]
+  setBanners: (b: Banner[]) => void
 };
 
 const BannerSelector = ({ selected, onSelect, banners, setBanners }: Props) => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    if (banners.length > 0) return;
+    if (banners.length > 0) return
 
     const fetchBanners = async () => {
       setLoading(true);
       try {
-        const response = await fetch('http://localhost:8080/api/v1/banners');
-        const data = await response.json();
+        const response = await fetch('http://localhost:8080/api/v1/banners')
+        const data = await response.json()
 
-        const formatted = data.map((banner: { gachaId: number; bannerName: string; imgUrl: string, itemId: number }) => ({
+        const formatted = data.map((banner: { gachaId: number; bannerName: string; imgUrl: string; itemId: number }) => ({
           gacha_id: banner.gachaId,
           banner_name: banner.bannerName,
-          image_url: banner.imgUrl, // or use banner.imgUrl
+          image_url: banner.imgUrl,
           item_id: banner.itemId
         }));
 
-        setBanners(formatted);
+        setBanners(formatted)
       } catch (e) {
-        console.error('Failed to load banners', e);
+        console.error('Failed to load banners', e)
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
     };
 
-    fetchBanners();
-  }, [banners, setBanners]);
+    fetchBanners()
+  }, [banners, setBanners])
 
   return (
     <div>
       <h1 className="text-xl font-bold mb-4">Select a Banner</h1>
       {loading && <p className="text-gray-400">Loading banners...</p>}
-      <ul className="space-y-2">
+      <ul className="space-y-2 max-h-[300px] overflow-y-auto pr-2">
         {banners.map((banner) => (
           <li
             key={banner.gacha_id}
@@ -60,4 +59,4 @@ const BannerSelector = ({ selected, onSelect, banners, setBanners }: Props) => {
   );
 };
 
-export default BannerSelector;
+export default BannerSelector

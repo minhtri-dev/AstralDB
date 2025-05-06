@@ -1,18 +1,7 @@
 import Dexie from 'dexie';
 
-export interface WarpRecord {
-  warpId: number;
-  userId: number | null;
-  itemId: number;
-  gachaId: number;
-  gachaType: string;
-  pity: number | null;
-  warpTime: string;
-  hsrId: number;
-}
-
 class GachaDB extends Dexie {
-  warps: Dexie.Table<WarpRecord, number>;
+  warps: Dexie.Table<Warp, number>;
 
   constructor() {
     super('GachaDB')

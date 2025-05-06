@@ -1,7 +1,6 @@
 import axios from 'axios';
-import { getQueryParam } from '../utils/url'
-import { db } from '../utils/db'
-import { WarpRecord } from '../utils/db'
+import { getQueryParam } from 'utils/url'
+import { db } from '@utils/db'
 
 function sleep(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms))
@@ -20,7 +19,7 @@ export async function fetchWarpData(
   let page = 1
   let end_id = '0'
   let lastLen = 0
-  const warps: WarpRecord[] = []
+  const warps: Warp[] = []
 
   try {
     const latestSaved = await db.warps
@@ -50,7 +49,7 @@ export async function fetchWarpData(
         break;
       }
 
-      const newWarps = data.filter((item: any) => item.warpId > lastWarpId)
+      const newWarps = data.filter((warp: Warp) => warp.warpId > lastWarpId)
       warps.push(...newWarps)
       lastLen = newWarps.length
 

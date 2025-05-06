@@ -4,4 +4,4 @@ const Background = () => {
   );
 };
 
-export default Background;
+export default Background

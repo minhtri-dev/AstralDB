@@ -1,12 +1,12 @@
-import { BannerSelector, Modal } from '../../components';
-import { useState, useEffect } from 'react';
-import { Banner } from '../../types/bannerType';
-import colors from '../../config/colors'
-import axios from 'axios';
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+
+import { BannerSelector, Modal } from '@components'
+import { colors } from '@config/colors'
 
 const WarpTracker = () => {
   const [banners, setBanners] = useState<Banner[]>([])
-  const [selected, setSelected] = useState<Banner | null>(null)
+  const [selected, setSelected] = useState<Banner | null>({gacha_id: 0, banner_name: 'Contract Zero', image_url: '', item_id: 0})
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [itemName, setItemName] = useState("Silver Wolf")
   const [selectedColor, setSelectedColor] = useState("#553b92")
@@ -68,7 +68,7 @@ const WarpTracker = () => {
 
             <div>
               <h2 className="text-2xl font-bold mb-4">
-                {itemName || 'Loading...'}
+                {selected?.banner_name} ({itemName || 'Loading...'})
               </h2>
               <div className="bg-[#181c24] rounded-md p-3 border border-[#37383a] grid grid-cols-2 md:grid-cols-3 gap-2 text-white">
                 {/* Stat Items */}
@@ -111,6 +111,7 @@ const WarpTracker = () => {
               </div>
             </div>
             <img
+              alt=''
               src={"/Banners/" + (selected?.image_url || "contract-zero.png")}
               className="absolute w-120 -right-10 bottom-0 object-cover rounded-lg"
             />
