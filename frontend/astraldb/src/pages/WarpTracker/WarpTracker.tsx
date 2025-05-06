@@ -113,7 +113,7 @@ const WarpTracker = () => {
             <img
               alt=''
               src={"/Banners/" + (selected?.image_url || "contract-zero.png")}
-              className="absolute w-120 -right-10 bottom-0 object-cover rounded-lg"
+              className="absolute w-100 right-0 bottom-0  drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)] rounded-lg"
             />
           </div>
         </div>
