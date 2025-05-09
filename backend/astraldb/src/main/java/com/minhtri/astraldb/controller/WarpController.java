@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,10 +30,11 @@ public class WarpController {
     @Value("${warp.api.url}")
     private String API_URL;
 
-    @GetMapping("/getWarpLog")
+    @CrossOrigin
+    @GetMapping("/getWarpLog") // Import?
     public ResponseEntity<?> fetchWarps(
         @RequestParam String gacha_type,
-        @RequestParam(defaultValue = "0") String endId,
+        @RequestParam(defaultValue = "0") String end_id,
         @RequestParam String authkey_ver,
         @RequestParam String authkey,
         @RequestParam String sign_type
@@ -42,7 +44,7 @@ public class WarpController {
 
             String warpUrl = UriComponentsBuilder.fromHttpUrl(API_URL)
                 .queryParam("gacha_type", gacha_type)
-                .queryParam("end_id", endId)
+                .queryParam("end_id", end_id)
                 .queryParam("authkey_ver", authkey_ver)
                 .queryParam("authkey", encodedAuthKey)
                 .queryParam("sign_type", sign_type)

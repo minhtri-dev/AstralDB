@@ -1,6 +1,6 @@
 package com.minhtri.astraldb.model.warptrackerdb;
 
-import java.util.Set;
+// import java.util.Set;
 
 import jakarta.persistence.*;
 
@@ -33,8 +33,14 @@ public class Banner {
     @Column(name = "rate_5050")
     private Float rate5050;
 
-    @OneToMany(mappedBy = "gachaId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Warp> warps;
+    @Column(name = "image_url")
+    private String imgUrl;
+
+    @Column(name = "item_id")
+    private Integer itemId;
+
+    // @OneToMany(mappedBy = "gachaId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    // private Set<Warp> warps;
 
     // Getters and Setters
 
@@ -102,11 +108,27 @@ public class Banner {
         this.rate5050 = rate5050;
     }
 
-    public Set<Warp> getWarps() {
-        return warps;
+    public String getImgUrl() {
+        return imgUrl;
     }
 
-    public void setWarps(Set<Warp> warps) {
-        this.warps = warps;
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
+
+    public Integer getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(Integer itemId) {
+        this.itemId = itemId;
+    }
+
+    // public Set<Warp> getWarps() {
+    //     return warps;
+    // }
+
+    // public void setWarps(Set<Warp> warps) {
+    //     this.warps = warps;
+    // }
 }

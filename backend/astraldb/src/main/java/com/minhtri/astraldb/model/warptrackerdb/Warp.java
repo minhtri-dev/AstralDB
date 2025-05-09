@@ -9,7 +9,7 @@ public class Warp {
 
     @Id
     @Column(name = "warp_id")
-    private Long warpId;
+    private String warpId;
 
     // @ManyToOne(fetch = FetchType.LAZY)
     // @JoinColumn(name = "user_id")
@@ -41,7 +41,7 @@ public class Warp {
     }
 
     // Parameterised constructor
-    public Warp(Long warpId, Long userId, Long hsr_uid, Long itemId, Integer gachaId, String gachaType, Integer pity, Timestamp warpTime) {
+    public Warp(String warpId, Long userId, Long hsr_uid, Long itemId, Integer gachaId, String gachaType, Integer pity, Timestamp warpTime) {
         this.warpId = warpId;
         this.userId = userId;
         this.hsr_uid = hsr_uid;
@@ -53,11 +53,11 @@ public class Warp {
     }
 
     // Getters and setters
-    public Long getWarpId() {
+    public String getWarpId() {
         return warpId;
     }
 
-    public void setWarpId(Long warpId) {
+    public void setWarpId(String warpId) {
         this.warpId = warpId;
     }
 
