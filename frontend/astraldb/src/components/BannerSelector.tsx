@@ -9,6 +9,7 @@ type Props = {
 
 const BannerSelector = ({ selected, onSelect, banners, setBanners }: Props) => {
   const [loading, setLoading] = useState(false)
+  const apiUrl = import.meta.env.VITE_API_URL
 
   useEffect(() => {
     if (banners.length > 0) return
@@ -16,7 +17,7 @@ const BannerSelector = ({ selected, onSelect, banners, setBanners }: Props) => {
     const fetchBanners = async () => {
       setLoading(true);
       try {
-        const response = await fetch('http://localhost:8080/api/v1/banners')
+        const response = await fetch(`${apiUrl}/api/v1/banners`)
         const data = await response.json()
 
         const formatted = data.map((banner: { gachaId: number; bannerName: string; imgUrl: string; itemId: number }) => ({

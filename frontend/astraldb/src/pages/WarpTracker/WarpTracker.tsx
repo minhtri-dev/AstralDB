@@ -10,13 +10,15 @@ const WarpTracker = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [itemName, setItemName] = useState("Silver Wolf")
   const [selectedColor, setSelectedColor] = useState("#553b92")
+  const apiUrl = import.meta.env.VITE_API_URL
+
 
   useEffect(() => {
     if (!selected) return;
   
     const fetchItem = async () => {
       try {
-        const res = await axios.post('http://localhost:8080/api/v1/items', {
+        const res = await axios.post(`${apiUrl}/api/v1/items`, {
           ids: [selected.item_id]
         });
         

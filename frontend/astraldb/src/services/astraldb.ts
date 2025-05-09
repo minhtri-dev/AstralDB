@@ -15,6 +15,7 @@ export async function fetchWarpData(
   const authkey_ver = getQueryParam(urlString, 'authkey_ver')
   const sign_type = getQueryParam(urlString, 'sign_type')
   const size = 20
+  const apiUrl = import.meta.env.VITE_API_URL
 
   let page = 1
   let end_id = '0'
@@ -41,7 +42,7 @@ export async function fetchWarpData(
         end_id,
       };
 
-      const response = await axios.get('http://localhost:8080/api/v1/warp_record/getWarpLog', { params })
+      const response = await axios.get(`${apiUrl}/api/v1/warp_record/getWarpLog`, { params })
       const data = response.data
 
       if (!Array.isArray(data)) {
