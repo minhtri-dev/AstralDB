@@ -23,12 +23,6 @@ CREATE TABLE IF NOT EXISTS item (
 CREATE TABLE IF NOT EXISTS banner (
   gacha_id INT PRIMARY KEY,
   banner_name VARCHAR(255) NOT NULL,
-  user_count INT,
-  warp_count INT,
-  jade_spent INT,
-  avg_5_pity INT,
-  avg_4_pity INT,
-  rate_5050 FLOAT,
   image_url VARCHAR(255),
   item_id INT,
   FOREIGN KEY (item_id) REFERENCES item(item_id)
