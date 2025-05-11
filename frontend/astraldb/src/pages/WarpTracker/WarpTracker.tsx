@@ -119,10 +119,14 @@ const WarpTracker = () => {
             />
           </div>
         </div>
+
+        
       
         <h2 className="text-2xl text-gray-400 mb-5 mt-10">
           Warp Record
         </h2>
+
+        
       </div>
     </div>
   )
