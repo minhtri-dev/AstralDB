@@ -1,7 +1,8 @@
 // LoginForm.tsx
 import { Link } from 'react-router';
 import React, { useState } from 'react';
-import { signIn } from 'aws-amplify/auth';
+import { signIn, fetchAuthSession } from 'aws-amplify/auth';
+import { LogoffButton } from '@components';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -17,8 +18,21 @@ const Login = () => {
     try {
       const user = await signIn({ username, password });
       console.log('Signed in:', user);
+      const session = await fetchAuthSession();
+      const accessToken = session.tokens?.accessToken?.toString();
+      console.log('Access Token:', accessToken);
       alert('Login successful!');
       // Optionally redirect or fetch session data
+      const response = await fetch('http://localhost:8080/api/v1/banners', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      console.log(response)
+
     } catch (err: any) {
       console.error('Login error:', err);
       setError(err.message || 'Login failed');
@@ -28,6 +42,7 @@ const Login = () => {
   };
 
   return (
+    <div>
     <form onSubmit={handleLogin} style={{ maxWidth: 400, margin: 'auto' }}>
       <h2 className="text-5xl">Login</h2>
       <div>
@@ -56,6 +71,8 @@ const Login = () => {
         Don't have an account? <Link to="/register">Click here</Link>
       </div>
     </form>
+    <LogoffButton />
+    </div>
   );
 };
 

@@ -17,7 +17,6 @@ public class BannerController {
     @Autowired
     BannerRepository bannerRepository;
     
-    @CrossOrigin
     @GetMapping
     public List<Banner> getAllBanners() {
         return bannerRepository.findAll();

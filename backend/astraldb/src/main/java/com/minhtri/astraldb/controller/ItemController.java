@@ -24,7 +24,6 @@ public class ItemController {
     @Autowired
     ItemRepository itemRepository;
 
-    @CrossOrigin
     @PostMapping()
     public List<Item> all(@RequestBody JsonNode jsonNode) {
         if (!jsonNode.has("ids") || !jsonNode.get("ids").isArray()) {

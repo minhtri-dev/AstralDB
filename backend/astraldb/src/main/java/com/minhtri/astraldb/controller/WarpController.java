@@ -30,7 +30,6 @@ public class WarpController {
     @Value("${warp.api.url}")
     private String API_URL;
 
-    @CrossOrigin
     @GetMapping("/getWarpLog") // Import?
     public ResponseEntity<?> fetchWarps(
         @RequestParam String gacha_type,
