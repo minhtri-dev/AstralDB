@@ -21,7 +21,7 @@ import java.util.Map;
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    @Value("${cognito.userPoolId}")
+    @Value("${cognito.userpool.id}")
     private String userPoolId;
 
     @Value("${cognito.region}")
